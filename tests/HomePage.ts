@@ -162,8 +162,8 @@ export class HomePage {
     }
 
     async wishlistASpecificItem(){
-        await this.productCard.locator('span.wishlist_btn').click();
-        const itemName = await this.productCard.locator('div.widget-product-card-details').locator('div').first().innerText();
+        await (this.productCard.locator('div.widget-product-card-wishlist')).click();
+        const itemName = await (this.productCard.locator('div.widget-product-card-details').locator('div').first()).innerText();
         console.log(itemName);
         return itemName;
     }

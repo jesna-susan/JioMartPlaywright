@@ -141,6 +141,44 @@ test.describe('JioMart Web App Tests', () => {
         await wishlistPage.verifyItemInWishlist({homePage});
     });
 
+    test('Verify edit profile page heading',async({homePage, loginPage, profilePage})=>{
+        await homePage.verifyUserIsOnHomePage();
+        await homePage.navigateToLogin();
+        await loginPage.inputLoginDetails();
+        await loginPage.inputOtp();
+        await homePage.clickOnAgree();
+        await homePage.verifyUserIsLoggedInSuccessfully();
+        await homePage.clickOnProfileIcon();
+        await profilePage.verifyEditProfilePage();
+    });
+
+    test('Edit firstname and lastname of profile',async({homePage, loginPage, profilePage})=>{
+        await homePage.verifyUserIsOnHomePage();
+        await homePage.navigateToLogin();
+        await loginPage.inputLoginDetails();
+        await loginPage.inputOtp();
+        await homePage.clickOnAgree();
+        await homePage.verifyUserIsLoggedInSuccessfully();
+        await homePage.clickOnProfileIcon();
+        await profilePage.verifyEditProfilePage();
+        await profilePage.editName();
+    });
+
+    test('Verify edit of name correctly displayed in profile',async({homePage, loginPage, profilePage})=>{
+        await homePage.verifyUserIsOnHomePage();
+        await homePage.navigateToLogin();
+        await loginPage.inputLoginDetails();
+        await loginPage.inputOtp();
+        await homePage.clickOnAgree();
+        await homePage.verifyUserIsLoggedInSuccessfully();
+        await homePage.clickOnProfileIcon();
+        await profilePage.verifyEditProfilePage();
+        await profilePage.verifyNameChangesAreDisplayed();
+
+    });
+
+    
+
 
 
 

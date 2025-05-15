@@ -22,7 +22,7 @@ export class WishlistPage {
     }
 
     async verifyItemInWishlist({homePage}){
-        const prodNameFromWishlist = await this.productCard.locator("div.product-details").locator('div.prdname').innerText();
+        const prodNameFromWishlist = await (this.productCard.locator("div.product-details").locator('div.prdname')).innerText();
         const prodName = await homePage.wishlistASpecificItem();
         console.log(prodName+" = "+prodNameFromWishlist)
         expect(prodNameFromWishlist).toContain(prodName);

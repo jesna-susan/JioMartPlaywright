@@ -128,17 +128,17 @@ test.describe('JioMart Web App Tests', () => {
         await wishlistPage.verifyWishlistHeading();    
     });
 
-    test.only('Verify wishlisted items are in the wishlist',async({homePage, loginPage, profilePage, wishlistPage})=>{
+    test('Verify wishlisted items are in the wishlist',async({homePage, loginPage, profilePage, wishlistPage})=>{
         await homePage.verifyUserIsOnHomePage();
         await homePage.navigateToLogin();
         await loginPage.inputLoginDetails();
         await loginPage.inputOtp();
         await homePage.clickOnAgree();
         await homePage.verifyUserIsLoggedInSuccessfully();
-        await homePage.wishlistASpecificItem();
+        const prodName = await homePage.wishlistASpecificItem();
         await homePage.clickOnProfileIcon();
         await profilePage.clickOnWishList(); 
-        await wishlistPage.verifyItemInWishlist({homePage});
+        await wishlistPage.verifyItemInWishlist({homePage, prodName});
     });
 
     test('Verify edit profile page heading',async({homePage, loginPage, profilePage})=>{
@@ -174,8 +174,11 @@ test.describe('JioMart Web App Tests', () => {
         await homePage.clickOnProfileIcon();
         await profilePage.verifyEditProfilePage();
         await profilePage.verifyNameChangesAreDisplayed();
-
     });
+
+    
+
+
 
     
 

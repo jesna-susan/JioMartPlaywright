@@ -1,0 +1,22 @@
+{
+  "name": "playwrightproject2",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jesna-susan/JioMartPlaywright.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jesna-susan/JioMartPlaywright/issues"
+  },
+  "homepage": "https://github.com/jesna-susan/JioMartPlaywright#readme",
+  "description": "",
+  "devDependencies": {
+    "@playwright/test": "^1.52.0",
+    "@types/node": "^22.15.17"
+  }
+}

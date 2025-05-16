@@ -21,6 +21,7 @@ export class LoginPage {
     }
 
     async verifyUserIsOnLoginPage(){
+        await this.page.waitForLoadState('networkidle');
         await expect (this.page).toHaveTitle('Retail Account');
     }
 

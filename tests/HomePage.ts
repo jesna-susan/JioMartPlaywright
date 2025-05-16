@@ -23,6 +23,10 @@ export class HomePage {
     readonly wishListBtns: Locator;
     readonly categoryTitleText: Locator;
     readonly productCard: Locator;
+    readonly contactUsHeading: Locator;
+    readonly logo: Locator;
+    readonly jiomartWallet: Locator;
+    readonly electronicsZone: Locator;
     
 
     constructor(page: Page) {
@@ -46,7 +50,10 @@ export class HomePage {
         this.wishListBtns = page.locator('.wishlist_btn');
         this.categoryTitleText = page.locator('.header-nav-l1-item-link');
         this.productCard = page.locator('.widget-product-card-wrapper.swiper-slide.swiper-slide-active');
-        
+        this.contactUsHeading = page.getByRole('heading', { name: 'Contact Us', level: 2 });
+        this.logo = page.locator('[class="jm-btn primary small jm-heading-base jm-fc-white jm-border-none"]');
+        this.jiomartWallet = page.getByRole('link', { name: 'JioMart Wallet', exact: true }); 
+        this.electronicsZone = page.locator('div:has-text(" Electronics Zone ")').nth(1);     
     }
 
     async navigateToHome() {
@@ -68,6 +75,7 @@ export class HomePage {
     }
 
     async clickOnAgree(){
+        await this.agreeBtn.waitFor();
         await expect (this.agreeBtn).toBeVisible();
         await this.agreeBtn.click();
     }
@@ -168,6 +176,31 @@ export class HomePage {
         return itemName;
     }
 
+    async clickOnACategory(){
+        await this.categoryHeading.nth(0).click();
+        await this.page.mouse.move(0, 0); //to prevent dropdown from coming because of mouse hover 
+    }
+
+    async verifyUserIsSignedOut(){
+        await expect (this.signInIcon).toBeVisible();
+    }
+
+    async verifyContactInfoIsDisplayed(){
+        await expect (this.contactUsHeading).toBeVisible();
+    }
+
+    async verifyLogoRedirectsToHomePage(){
+        await this.logo.click();
+        await expect(this.page).toHaveURL('https://www.jiomart.com/');
+    }
+
+    async openJioMartWalletFromHome(){
+        await this.jiomartWallet.click();
+    }
+
+    async verifyElectronicsZoneSectionIsVisible(){
+        await expect (this.electronicsZone).toBeVisible();
+    }
     
     
 

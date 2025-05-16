@@ -5,6 +5,7 @@ import { CartPage } from './CartPage';
 import { SearchResultsPage } from './SearchResultsPage';
 import { ProfilePage } from './ProfilePage';
 import { WishlistPage } from './WishListPage';
+import { CategoryPage } from './Category';
 
 type JioMartFixtures = {
     homePage: HomePage;
@@ -13,6 +14,7 @@ type JioMartFixtures = {
     searchResultsPage: SearchResultsPage;
     profilePage: ProfilePage;
     wishlistPage: WishlistPage;
+    categoryPage: CategoryPage;
 };
 
 export const test = base.extend<JioMartFixtures>({
@@ -45,6 +47,11 @@ export const test = base.extend<JioMartFixtures>({
     wishlistPage: async ({ page }, use ) => {
         const wishlistPage = new WishlistPage(page);
         await use(wishlistPage);
+    },
+
+    categoryPage: async ({ page }, use ) => {
+        const categoryPage = new CategoryPage(page);
+        await use(categoryPage);
     },
 
 

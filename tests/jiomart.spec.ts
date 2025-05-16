@@ -5,8 +5,10 @@ import { CartPage } from './CartPage.ts';
 import { SearchResultsPage } from './SearchResultsPage.ts';
 import { ProfilePage } from './ProfilePage.ts';
 import { WishlistPage } from './WishListPage.ts';
+import { CategoryPage } from './Category.ts';
 import { test, expect } from './jiomart.fixture.ts';
 import * as config from './config';
+import { profile } from 'console';
 
 test.describe.configure({ mode: 'parallel' });
 
@@ -176,7 +178,182 @@ test.describe('JioMart Web App Tests', () => {
         await profilePage.verifyNameChangesAreDisplayed();
     });
 
+    test('Verify deafult sort is by popularity',async({homePage, categoryPage})=>{
+        await homePage.clickOnACategory();
+        await categoryPage.verifyDefaultSortIsByPopularity();
+    });
+
+    test('Verify default sort is by popularity',async({homePage, categoryPage})=>{
+        await homePage.clickOnACategory();
+        await categoryPage.clickOnSortBtn();
+        await categoryPage.verifyDefaultSortIsByPopularity();
+    });
+
+    test('Verify sorting of price high to low',async({homePage, categoryPage})=>{
+        await homePage.clickOnACategory();
+        await categoryPage.clickOnSortBtn();
+        await categoryPage.verifySortingOfPriceHighToLow();
+    });
+
+    test('Verify sorting of price low to high',async({homePage, categoryPage})=>{
+        await homePage.clickOnACategory();
+        await categoryPage.clickOnSortBtn();
+        await categoryPage.verifySortingOfPriceLowToHigh();
+    });
+
+    test('Verify discount sorting works', async({homePage, categoryPage})=>{
+        await homePage.clickOnACategory();
+        await categoryPage.clickOnSortBtn();
+        await categoryPage.verifyDiscountSortWorks();
+    });
+
+    test('Verify navigation from profile page', async({homePage, profilePage, loginPage, wishlistPage})=>{
+        await homePage.verifyUserIsOnHomePage();
+        await homePage.navigateToLogin();
+        await loginPage.inputLoginDetails();
+        await loginPage.inputOtp();
+        await homePage.clickOnAgree();
+        await homePage.verifyUserIsLoggedInSuccessfully();
+        await homePage.clickOnProfileIcon();
+        await profilePage.verifyMyOrdersTab();
+        await profilePage.clickOnMyAccountNavigationBtn();
+        await profilePage.clickOnWishList();
+        await wishlistPage.verifyUserIsOnWishlistPage();
+        await profilePage.clickOnMyAccountNavigationBtn();
+        await profilePage.verifyMyListTab();
+    });
+
+    test('Verify navigation to Coupons Tab', async({homePage, profilePage, loginPage})=>{
+        await homePage.verifyUserIsOnHomePage();
+        await homePage.navigateToLogin();
+        await loginPage.inputLoginDetails();
+        await loginPage.inputOtp();
+        await homePage.clickOnAgree();
+        await homePage.verifyUserIsLoggedInSuccessfully();
+        await homePage.clickOnProfileIcon();
+        await profilePage.verifyCouponsTab();
+    });
+
+    test('Verify user can add Address', async({homePage, profilePage, loginPage})=>{
+        await homePage.verifyUserIsOnHomePage();
+        await homePage.navigateToLogin();
+        await loginPage.inputLoginDetails();
+        await loginPage.inputOtp();
+        await homePage.clickOnAgree();
+        await homePage.verifyUserIsLoggedInSuccessfully();
+        await homePage.clickOnProfileIcon();
+        await profilePage.addANewAddress();
+    });
+
+    test('Verify user can edit Address', async({homePage, profilePage, loginPage})=>{
+        await homePage.verifyUserIsOnHomePage();
+        await homePage.navigateToLogin();
+        await loginPage.inputLoginDetails();
+        await loginPage.inputOtp();
+        await homePage.clickOnAgree();
+        await homePage.verifyUserIsLoggedInSuccessfully();
+        await homePage.clickOnProfileIcon();
+        await profilePage.editAddress();
+    });
+
+    test('Verify user can navigate to PAN Card Information', async({homePage, profilePage, loginPage})=>{
+        await homePage.verifyUserIsOnHomePage();
+        await homePage.navigateToLogin();
+        await loginPage.inputLoginDetails();
+        await loginPage.inputOtp();
+        await homePage.clickOnAgree();
+        await homePage.verifyUserIsLoggedInSuccessfully();
+        await homePage.clickOnProfileIcon();
+        await profilePage.navigateToPanCardInformation();
+      
+    });
+
+    test('Verify user can view the terms and conditions', async({homePage, profilePage, loginPage})=>{
+        await homePage.verifyUserIsOnHomePage();
+        await homePage.navigateToLogin();
+        await loginPage.inputLoginDetails();
+        await loginPage.inputOtp();
+        await homePage.clickOnAgree();
+        await homePage.verifyUserIsLoggedInSuccessfully();
+        await homePage.clickOnProfileIcon();
+        await profilePage.verifyTermsAndConditionsVisible();
+    });
+
+    test('Verify user can sign out from user account', async({homePage, profilePage, loginPage})=>{
+        await homePage.verifyUserIsOnHomePage();
+        await homePage.navigateToLogin();
+        await loginPage.inputLoginDetails();
+        await loginPage.inputOtp();
+        await homePage.clickOnAgree();
+        await homePage.verifyUserIsLoggedInSuccessfully();
+        await homePage.clickOnProfileIcon();
+        await profilePage.verifyUserCanSignOut();
+        await homePage.navigateToHome();
+        await homePage.verifyUserIsSignedOut();
+    });
+
+    test('Verify contact information is displayed even without login', async({homePage, profilePage, loginPage})=>{
+        await homePage.verifyUserIsOnHomePage();
+        await homePage.verifyContactInfoIsDisplayed();
+    });
+
+    test('Verify user can view their jiomart wallet and gift card details', async({homePage, profilePage, loginPage})=>{
+        await homePage.verifyUserIsOnHomePage();
+        await homePage.navigateToLogin();
+        await loginPage.inputLoginDetails();
+        await loginPage.inputOtp();
+        await homePage.clickOnAgree();
+        await homePage.verifyUserIsLoggedInSuccessfully();
+        await homePage.clickOnProfileIcon();
+        await profilePage.clickOnPaymentsOption();
+        await profilePage.verifyUserCanNavigateToJioMartWalletDetails();
+    });
+
+    test('Verify the logo directs to the home page', async({homePage})=>{
+        await homePage.verifyUserIsOnHomePage();
+        await homePage.verifyLogoRedirectsToHomePage();
+    });
+
+    test('Verify jioMart Wallet wont open without Login', async({homePage, loginPage})=>{
+        await homePage.verifyUserIsOnHomePage();
+        await homePage.openJioMartWalletFromHome();
+        await loginPage.verifyUserIsOnLoginPage();
+        
+    });
+
+    test('Verify electronics zone section is visible', async({homePage})=>{
+        await homePage.verifyUserIsOnHomePage();
+        await homePage.verifyElectronicsZoneSectionIsVisible();
+        
+    });
+
     
+
+
+
+    
+
+
+
+
+
+
+    
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -28,6 +28,7 @@ export class HomePage {
     readonly jiomartWallet: Locator;
     readonly electronicsZone: Locator;
     
+    
 
     constructor(page: Page) {
         this.page = page;
@@ -53,7 +54,9 @@ export class HomePage {
         this.contactUsHeading = page.getByRole('heading', { name: 'Contact Us', level: 2 });
         this.logo = page.locator('[class="jm-btn primary small jm-heading-base jm-fc-white jm-border-none"]');
         this.jiomartWallet = page.getByRole('link', { name: 'JioMart Wallet', exact: true }); 
-        this.electronicsZone = page.locator('div:has-text(" Electronics Zone ")').nth(1);     
+        this.electronicsZone = page.locator('div:has-text(" Electronics Zone ")').nth(1);
+        
+
     }
 
     async navigateToHome() {
@@ -201,8 +204,5 @@ export class HomePage {
     async verifyElectronicsZoneSectionIsVisible(){
         await expect (this.electronicsZone).toBeVisible();
     }
-    
-    
 
-    
 }

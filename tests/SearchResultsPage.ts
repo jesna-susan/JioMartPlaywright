@@ -16,7 +16,7 @@ export class SearchResultsPage {
 
     async verifySearchResults(){
         const currentURL = this.page.url();
-        await expect(currentURL).toContain(config.item);
+        expect(currentURL).toContain(config.item);
     }
 
     async verifyAddToCartButtonIsVisible(){

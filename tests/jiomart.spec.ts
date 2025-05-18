@@ -327,6 +327,35 @@ test.describe('JioMart Web App Tests', () => {
         
     });
 
+    test('Verify filters tab section is visible under categories', async({homePage, categoryPage})=>{
+        await homePage.verifyUserIsOnHomePage();
+        await homePage.clickOnACategory();
+        await categoryPage.verifyFiltersAreVisible();
+        
+    });
+
+    test('Verify subcategories are visible in category page', async({homePage, categoryPage})=>{
+        await homePage.verifyUserIsOnHomePage();
+        await homePage.clickOnACategory();
+        await categoryPage.verifySubCategoriesAreVisible();
+    });
+
+    test('Verify price and discounts are visible in category page', async({homePage, categoryPage})=>{
+        await homePage.verifyUserIsOnHomePage();
+        await homePage.clickOnACategory();
+        await categoryPage.verifyPriceAndDiscountAreVisible();
+    });
+
+    
+
+
+
+
+
+
+
+    
+
     
 
 

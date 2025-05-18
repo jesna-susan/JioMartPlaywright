@@ -11,6 +11,10 @@ export class CategoryPage {
     readonly productCard: Locator;
     readonly priceLowToHighBtn: Locator;
     readonly discountBtn: Locator;
+    readonly filters: Locator;
+    readonly subCategoryBox: Locator;
+    readonly price: Locator;
+    readonly discount: Locator;
 
 
 
@@ -24,6 +28,11 @@ export class CategoryPage {
         this.priceLowToHighBtn = page.getByText('Price: Low to High');
         this.discountBtn = page.locator('[class="slider round"]').nth(3);
         this.productCard = page.locator('li.ais-InfiniteHits-item.jm-col-4.jm-mt-base');
+        this.filters = page.locator('[class="filter-title jm-heading-xs"]');
+        this.subCategoryBox = page.locator('[class="category-container"]');
+        this.price = page.locator('h2:has-text("Price")');
+        this.discount = page.locator('h2:has-text("Discount")');
+
 
 
     }
@@ -31,6 +40,19 @@ export class CategoryPage {
     async clickOnSortBtn(){
         await this.sortBtn.click();
 
+    }
+
+    async verifyFiltersAreVisible(){
+        await expect (this.filters).toBeVisible();
+    }
+
+    async verifySubCategoriesAreVisible(){
+        await expect (this.subCategoryBox).toBeVisible();
+    }
+
+    async verifyPriceAndDiscountAreVisible(){
+        await expect (this.price).toBeVisible();
+        await expect (this.discount).toBeVisible();
     }
 
     async verifyDefaultSortIsByPopularity(){

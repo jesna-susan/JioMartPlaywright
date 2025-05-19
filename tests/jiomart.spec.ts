@@ -178,12 +178,12 @@ test.describe('JioMart Web App Tests', () => {
         await profilePage.verifyNameChangesAreDisplayed();
     });
 
-    test('Verify deafult sort is by popularity',async({homePage, categoryPage})=>{
+    test('Verify deafult sort option is by popularity',async({homePage, categoryPage})=>{
         await homePage.clickOnACategory();
         await categoryPage.verifyDefaultSortIsByPopularity();
     });
 
-    test('Verify default sort is by popularity',async({homePage, categoryPage})=>{
+    test('Verify sort by popularity',async({homePage, categoryPage})=>{
         await homePage.clickOnACategory();
         await categoryPage.clickOnSortBtn();
         await categoryPage.verifyDefaultSortIsByPopularity();
@@ -345,6 +345,15 @@ test.describe('JioMart Web App Tests', () => {
         await homePage.clickOnACategory();
         await categoryPage.verifyPriceAndDiscountAreVisible();
     });
+
+    test.only('Verify filter is applied to the product results', async({homePage, searchResultsPage})=>{
+        await homePage.verifyUserIsOnHomePage();
+        await homePage.searchAnItem();
+        await searchResultsPage.verifySearchResults();
+        await searchResultsPage.applyFilterOutOfStock();
+        await searchResultsPage.verifyFilterOutOfStockIsApplied();
+    });
+
 
     
 

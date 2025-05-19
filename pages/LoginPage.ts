@@ -1,5 +1,5 @@
 import { Locator, Page } from '@playwright/test';
-import { expect } from './jiomart.fixture';
+import { expect } from '../fixture/jiomart.fixture';
 
 export class LoginPage {
     readonly page: Page;

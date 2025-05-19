@@ -1,11 +1,11 @@
 import { test as base, expect, BrowserContext, Page } from '@playwright/test';
-import { HomePage } from './homePage';
-import { LoginPage } from './LoginPage';
-import { CartPage } from './CartPage';
-import { SearchResultsPage } from './SearchResultsPage';
-import { ProfilePage } from './ProfilePage';
-import { WishlistPage } from './WishListPage';
-import { CategoryPage } from './Category';
+import { HomePage } from '../pages/HomePage';
+import { LoginPage } from '../pages/LoginPage';
+import { CartPage } from '../pages/CartPage';
+import { SearchResultsPage } from '../pages/SearchResultsPage';
+import { ProfilePage } from '../pages/ProfilePage';
+import { WishlistPage } from '../pages/WishlistPage';
+import { CategoryPage } from '../pages/Category';
 
 type JioMartFixtures = {
     homePage: HomePage;

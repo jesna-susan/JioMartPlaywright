@@ -1,13 +1,13 @@
 import { verify } from 'crypto';
-import { HomePage } from './homePage.ts';
-import { LoginPage } from './LoginPage.ts';
-import { CartPage } from './CartPage.ts';
-import { SearchResultsPage } from './SearchResultsPage.ts';
-import { ProfilePage } from './ProfilePage.ts';
-import { WishlistPage } from './WishListPage.ts';
-import { CategoryPage } from './Category.ts';
-import { test, expect } from './jiomart.fixture.ts';
-import * as config from './config';
+import { HomePage } from '../pages/HomePage.ts';
+import { LoginPage } from '../pages/LoginPage.ts';
+import { CartPage } from '../pages/CartPage.ts';
+import { SearchResultsPage } from '../pages/SearchResultsPage.ts';
+import { ProfilePage } from '../pages/ProfilePage.ts';
+import { WishlistPage } from '../pages/WishlistPage.ts';
+import { CategoryPage } from '../pages/Category.ts';
+import { test, expect } from '../fixture/jiomart.fixture.ts';
+import * as config from '../utils/config.ts';
 import { profile } from 'console';
 
 test.describe.configure({ mode: 'parallel' });
@@ -346,7 +346,7 @@ test.describe('JioMart Web App Tests', () => {
         await categoryPage.verifyPriceAndDiscountAreVisible();
     });
 
-    test.only('Verify filter is applied to the product results', async({homePage, searchResultsPage})=>{
+    test('Verify filter is applied to the product results', async({homePage, searchResultsPage})=>{
         await homePage.verifyUserIsOnHomePage();
         await homePage.searchAnItem();
         await searchResultsPage.verifySearchResults();

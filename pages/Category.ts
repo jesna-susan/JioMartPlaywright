@@ -1,6 +1,6 @@
 import { Locator, Page } from '@playwright/test';
-import { expect } from './jiomart.fixture';
-import * as config from './config';
+import { expect } from '../fixture/jiomart.fixture';
+import * as config from '../utils/config';
 
 
 export class CategoryPage {

@@ -1,6 +1,6 @@
 import { Locator, Page } from '@playwright/test';
 import { expect } from '../fixture/jiomart.fixture';
-import { HomePage } from './homePage';
+import { HomePage } from '../pages/HomePage';
 import * as config from '../utils/config'
 
 export class SearchResultsPage {
